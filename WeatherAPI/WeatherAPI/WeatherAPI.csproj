@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helpers\" />
     <Folder Include="Propierties\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

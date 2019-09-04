@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WeatherAPI.Interfaces;
-using WeatherAPI.Models;
-using WeatherAPI.Models.Enums;
+using WeatherAPI.StandarTypes;
 
 namespace WeatherAPI.Controllers
 {
@@ -20,9 +16,9 @@ namespace WeatherAPI.Controllers
             _weatherServices = weatherServices;
         }
 
-        // GET api/values
+        // GET api/weather/getFiveDaysWeather
         [HttpGet("getFiveDaysWeather")]
-        public async Task<IActionResult> GetNextFiveDaysWeatherAsync(string cityName, Unit unit = Unit.Standard, Language language = Language.en)
+        public async Task<IActionResult> GetNextFiveDaysWeatherAsync(string cityName, Unit unit = Unit.Metric, Language language = Language.en)
         {
             var forecast = await _weatherServices.GetNextFiveDaysWeather(cityName, unit, language);
             return Ok(forecast);

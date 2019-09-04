@@ -69,4 +69,3 @@ namespace WeatherAPI.Models
         public string CityName { get; set; }
     }
 }
-

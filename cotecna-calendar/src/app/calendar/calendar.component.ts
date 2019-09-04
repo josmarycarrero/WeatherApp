@@ -40,27 +40,34 @@ export class CalendarComponent implements OnChanges {
   }
 
   private getCalendar(): void {
-    if (this.month === this.currentDay.toDate().getMonth()) {
+    if (this.month === this.currentDay.toDate().getMonth()
+          && this.year === this.currentDay.toDate().getFullYear()) {
       this.weatherService.getWeather()
         .subscribe((forecast: any[]) => {
           this.weatherForecast = forecast;
           this.getMonthDays();
         });
     } else {
+      this.weatherForecast = [];
       this.getMonthDays();
     }
   }
 
   private getMonthDays() {
+    console.log(this.month);
     const startWeek = moment().month(this.month).year(this.year).startOf('month').week();
     const endWeek = moment().month(this.month).year(this.year).endOf('month').week();
+    const totalWeeks = moment().month(this.month).year(this.year).weeks();
+    console.log(startWeek);
+    console.log(endWeek);
+    console.log(totalWeeks);
     
     let calendar = [];
     for (var week = startWeek; week <= endWeek; week++) {
       const days = Array(7)
         .fill(0)
         .map((n, i) => {
-          const day = moment().week(week).startOf('week').clone().add(n + i, 'day');
+          const day = moment().month(this.month).year(this.year).week(week).startOf('week').clone().add(n + i, 'day');
           return {
             date: day.date(),
             today: this.isToday(day),

@@ -1,5 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
+import { WeatherService } from './services/weather.service';
+import { pipe } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-calendar',
@@ -13,6 +16,7 @@ export class CalendarComponent implements OnChanges {
 
   readonly dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   calendarMonth: any[]; // TO DO Create calendar day model
+  weatherForecast: any[] = []; //TO DO create weatherForecats model
 
   private currentDay = moment()
     .startOf('day');
@@ -24,14 +28,30 @@ export class CalendarComponent implements OnChanges {
       .toDate()
       .getTime()
     );
+  
+  constructor(
+    private weatherService: WeatherService,
+  ) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.month || changes.year) {
-      this.getCalendarMonth();
+      this.getCalendar();
     }
   }
 
-  getCalendarMonth() {
+  private getCalendar(): void {
+    if (this.month === this.currentDay.toDate().getMonth()) {
+      this.weatherService.getWeather()
+        .subscribe((forecast: any[]) => {
+          this.weatherForecast = forecast;
+          this.getMonthDays();
+        });
+    } else {
+      this.getMonthDays();
+    }
+  }
+
+  private getMonthDays() {
     const startWeek = moment().month(this.month).year(this.year).startOf('month').week();
     const endWeek = moment().month(this.month).year(this.year).endOf('month').week();
     
@@ -44,7 +64,7 @@ export class CalendarComponent implements OnChanges {
           return {
             date: day.date(),
             today: this.isToday(day),
-            weather: this.getWeather(day)
+            weather: this.getWeatherDay(day)
           }
         });
       calendar = [...calendar, ...days];
@@ -56,10 +76,12 @@ export class CalendarComponent implements OnChanges {
     return this.currentDay.toDate().getTime() === day.toDate().getTime();
   }
 
-  private getWeather(day: moment.Moment) {
-    return this.weatherDays.includes(day.toDate().getTime())
-      ? 'lorem ipsum' // Get weather from webService
-      : undefined;
+  private getWeatherDay(day: moment.Moment) {
+    const dayFormatted = day.format('DD/MM/YYYY');
+    const forecast = this.weatherForecast.filter((day) => {
+      return day.date === dayFormatted
+    });
+    return forecast.length > 0 ? forecast[0] : null;
   }
 
 }

@@ -5,10 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Interfaces\" />
+    <Compile Remove="Helpers\ClientBase.cs" />
+    <Compile Remove="Helpers\WeatherException.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\" />
     <Folder Include="Propierties\" />
-    <Folder Include="Services\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

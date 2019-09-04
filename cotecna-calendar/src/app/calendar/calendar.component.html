@@ -1,0 +1,15 @@
+<div class="calendar-header">
+  <span *ngFor="let day of dayNames">
+      {{ day }}
+  </span>
+</div>
+
+<div class="calendar-days">
+  <app-calendar-day *ngFor="let day of calendarMonth"
+    [date]='day.date'
+    [today]='day.today'
+    [weather]='day.weather'>
+  </app-calendar-day>
+</div>
+
+

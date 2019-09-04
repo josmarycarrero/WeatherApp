@@ -1,0 +1,25 @@
+:host {
+    display: flex;
+    flex-direction: column;
+
+    .calendar-header {
+        display: flex;
+        span {
+            width: 14.28%;
+            text-align: center;
+            font-weight: bold;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: blue;
+        }
+    }
+
+    .calendar-days {
+        display: flex;
+        flex-wrap: wrap;
+        app-calendar-day {
+            width: 14.28%;
+            margin-top: 1rem;
+            height: 42px;
+        }
+    }
+}

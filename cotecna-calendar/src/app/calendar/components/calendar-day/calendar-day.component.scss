@@ -1,0 +1,21 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    
+    .date {
+        color: black;
+        text-align: center;
+    }
+
+    .today {
+        color: red;
+    }
+
+    .weather {
+        text-align: center;
+        color: gray;
+        font-weight: normal;
+    }
+}

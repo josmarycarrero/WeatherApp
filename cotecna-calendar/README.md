@@ -1,5 +1,11 @@
 # CotecnaCalendar
 
+Calendar application with two dropdowns to select a year and a month that display all the days of the selected month in a row-per-week view 
+
+Additionally, the calendar display the temperature and weather condition forecast for the next 5 dayswhen the calendar is set to the current month.
+
+To get forecast information , the app use services from WeatherApi .Net Core API
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.5.
 
 ## Development server

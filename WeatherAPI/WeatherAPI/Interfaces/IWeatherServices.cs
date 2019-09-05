@@ -9,6 +9,6 @@ namespace WeatherAPI.Interfaces
 {
     public interface IWeatherServices
     {
-        Task<IEnumerable<ForecastItem>> GetNextFiveDaysWeather(string cityName, Unit unit = Unit.Metric, Language language = Language.en);
+        Task<IEnumerable<ForecastItem>> GetNextFiveDaysWeather(string cityName, Unit unit = Unit.Standard, Language language = Language.en);
     }
 }

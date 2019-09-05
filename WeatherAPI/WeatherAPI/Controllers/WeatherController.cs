@@ -18,7 +18,7 @@ namespace WeatherAPI.Controllers
 
         // GET api/weather/getFiveDaysWeather
         [HttpGet("getFiveDaysWeather")]
-        public async Task<IActionResult> GetNextFiveDaysWeatherAsync(string cityName, Unit unit = Unit.Metric, Language language = Language.en)
+        public async Task<IActionResult> GetNextFiveDaysWeatherAsync(string cityName, Unit unit = Unit.Standard, Language language = Language.en)
         {
             var forecast = await _weatherServices.GetNextFiveDaysWeather(cityName, unit, language);
             return Ok(forecast);

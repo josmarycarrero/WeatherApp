@@ -15,14 +15,14 @@ namespace WeatherAPI.Helpers
             _appSettings = appSettings;
         }
 
-        public RestUrl GetForecastUri(string cityName, Unit unit = Unit.Metric, Language language = Language.en)
+        public RestUrl GetForecastUri(string cityName, Unit unit = Unit.Standard, Language language = Language.en)
         {
             if (string.IsNullOrWhiteSpace(cityName))
             {
                 throw new Exception("City not found");
             }
             var req = new StringBuilder($"forecast?appid={_appSettings.Value.AppId}&q={cityName}");
-            if (unit != Unit.Imperial)
+            if (unit != Unit.Standard)
             {
                 req.Append($"&units={unit}");
             }

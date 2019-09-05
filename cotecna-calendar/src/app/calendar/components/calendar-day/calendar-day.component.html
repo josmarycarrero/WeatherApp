@@ -1,0 +1,6 @@
+<span class='date' [class.today]='today'>
+  {{ date }}
+</span>
+<div class='weather' *ngIf="weather">
+  <span>{{ weather.description}} ({{ weather.temperature | number:'1.0-0' }}ºC)</span>
+</div>

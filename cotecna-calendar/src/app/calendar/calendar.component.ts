@@ -54,13 +54,13 @@ export class CalendarComponent implements OnChanges {
   }
 
   private getMonthDays() {
-    console.log(this.month);
+
     const startWeek = moment().month(this.month).year(this.year).startOf('month').week();
-    const endWeek = moment().month(this.month).year(this.year).endOf('month').week();
-    const totalWeeks = moment().month(this.month).year(this.year).weeks();
-    console.log(startWeek);
-    console.log(endWeek);
-    console.log(totalWeeks);
+    var endWeek;
+    if (this.month == 11)  endWeek = startWeek + 4;
+    else endWeek = moment().month(this.month).year(this.year).endOf('month').week();
+    
+
     
     let calendar = [];
     for (var week = startWeek; week <= endWeek; week++) {

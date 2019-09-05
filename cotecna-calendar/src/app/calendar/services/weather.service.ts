@@ -15,6 +15,6 @@ export class WeatherService {
   ) { }
 
   getWeather(): Observable<any> {
-    return this.httpClient.get(`${this.apiUrl}getFiveDaysWeather?cityName=Barcelona`);
+    return this.httpClient.get(`${this.apiUrl}getFiveDaysWeather?cityName=Barcelona&unit=metric`);
   }
 }

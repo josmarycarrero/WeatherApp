@@ -11,6 +11,7 @@ namespace WeatherAPI.Controllers
     {
 
         private IWeatherServices _weatherServices;
+
         public WeatherController(IWeatherServices weatherServices)
         {
             _weatherServices = weatherServices;
